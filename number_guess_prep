@@ -1,0 +1,21 @@
+-- Create database
+CREATE DATABASE number_guess;
+
+-- Connect to database
+\c number_guess
+
+-- Add tables
+CREATE TABLE users(
+	user_id SERIAL PRIMARY KEY,
+	username VARCHAR(22) NOT NULL UNIQUE
+);
+
+CREATE TABLE games(
+	game_id SERIAL PRIMARY KEY,
+	score INT NOT NULL,
+	user_id INT REFERENCES users(user_id)
+);
+
+-- Add rows to test
+INSERT INTO users(username) VALUES ('Name1'), ('Name2'), ('Name3');
+INSERT INTO games(user_id, score) VALUES (1, 22), (1, 13), (1, 33), (2, 3), (2, 18), (1, 16), (3, 99), (2, 45);
